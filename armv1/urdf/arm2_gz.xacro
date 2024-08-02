@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arm">
+
+  <!-- Properties -->
+  <xacro:property name="base_len" value="0.1"/>
+  <xacro:property name="base_rad" value="0.2"/>
+  <xacro:property name="rot_len" value="0.5"/>
+  <xacro:property name="rot_rad" value="0.05"/>
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://armv1/meshes/base_link.STL"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://armv1/meshes/base_link.STL"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.52527"/>
+      <inertia ixx="0.00053943" ixy="8.6574E-20" ixz="7.3971E-21" iyy="0.00053943" iyz="1.378E-21" izz="0.00066837"/>
+    </inertial>
+  </link>
+
+  <!-- Joint 1 -->
+  <joint name="joint_1" type="revolute">
+    <origin xyz="0.03 0.73 0" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="link_1"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-3.142" upper="3.142" effort="150" velocity="3"/>
+  </joint>
+
+  <!-- Link 1 -->
+  <link name="link_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://armv1/meshes/link_1.STL"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="1 1 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://armv1/meshes/link_1.STL"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.52527"/>
+      <inertia ixx="0.00053943" ixy="8.6574E-20" ixz="7.3971E-21" iyy="0.00053943" iyz="1.378E-21" izz="0.00066837"/>
+    </inertial>
+  </link>
+
+</robot>
